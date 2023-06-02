@@ -1,5 +1,5 @@
 __license__   = "GNU GPLv3 <https://www.gnu.org/licenses/gpl.txt>"
-__author__    = "Enrico Garaldi <egaraldi@mpa-garching.mpg.de>, Daniela Galarraga-Espinosa <danigaes@mpa-garching.mpg.de>"
+__author__    = "Enrico Garaldi <egaraldi@mpa-garching.mpg.de>"
 __version__   = "1.0"
 
 
