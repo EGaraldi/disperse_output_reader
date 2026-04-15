@@ -46,4 +46,4 @@ To write in an HDF5 file the content of the class described above, use:
 
 where skeleton is the class to write and filename_hdf5 is the complete name of the HDF5 file to create.
 
-The format for this file is described at: https://thesan-project.com/filaments.html
+The format for this file is described at: https://thesan-project.com/thesan/filaments.html
