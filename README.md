@@ -46,4 +46,57 @@ To write in an HDF5 file the content of the class described above, use:
 
 where skeleton is the class to write and filename_hdf5 is the complete name of the HDF5 file to create.
 
-The format for this file is described at: https://thesan-project.com/thesan/filaments.html
+## Catalog format
+
+The output from DisPerSE is re-arranged in an [HDF5](https://www.hdfgroup.org/solutions/hdf5) file with a structure similar to other THESAN data product.
+Each catalog contains three main groups: an `Header`, whose *attributes* contain general information about the simulation and filaments,
+a `CriticalPoint` group, whose *datasets* contain the properties of the critical points of the density field identified by DisPerSE, and
+a `Filaments` group, whose *datasets* host the propertied of the filaments identified by DisPerSE.
+
+The available attributes in the `Header` group are listed here.
+
+### Header attributes
+
+| Attribute | Dimensions | Units | Description |
+|---|---|---|---|
+| BoundingBox | 6 | \(kpc/h\) | Coordinates of two corners of the bounding box (computed by DisPerSE) that encloses all tracer points. The six values correspond to \( x_{min}, y_{min}, z_{min}, x_{max}, y_{max}, z_{max} \) of the tracers. |
+| BoxSize | 1 | \(ckpc/h\) | Spatial extent of the periodic box (in comoving units). |
+| HubbleParam | 1 | \(100\,km/s/Mpc\) | Hubble constant (little \(h\) in standard units). |
+| NumCriticalPoints | 1 | - | Number of critical points identified by DisPerSE. |
+| NumDimensions | 1 | - | Number of dimensions of the space of tracer points. Always equal to 3 for THESAN. |
+| NumFilaments | 1 | - | Number of filaments identified by DisPerSE. |
+| Omega0 | 1 | - | The cosmological density parameter for matter. |
+| OmegaBaryon | 1 | - | The cosmological density parameter for baryonic matter. |
+| OmegaLambda | 1 | - | The cosmological density parameter for the cosmological constant. |
+| Redshift | 1 | - | The redshift corresponding to the current output. |
+| Time | 1 | - | The scale factor \(a=1/(1+z)\) corresponding to the current output. |
+| UnitLength_in_cm | 1 | - | Code length units in cm. |
+| UnitMass_in_g | 1 | - | Code mass units in g. |
+| UnitVelocity_in_cm_per_s | 1 | - | Code velocity units in cm/s. |
+
+The available datasets in the `CriticalPoints` and `Filaments` groups are listed here.
+
+### CriticalPoints datasets
+
+| Dataset | Dim. | Units | Description |
+|---|---|---|---|
+| AssociatedFields | (NumCriticalPoints, NumAssociatedFields) | - | Value of fields associated to each critical point. The number and name of these fields are stored in the `NumAssociatedFields` and `AssociatedFieldsNames` attributes of the `CriticalPoints` dataset |
+| BoundaryFlag | NumCriticalPoints | - | |
+| Coordinates | (NumCriticalPoints, 3) | \(kpc/h\) | Coordinates of each critical point |
+| CriticalIndex | NumCriticalPoints | - | Critical index of each critical point |
+| DensityDTFE | NumCriticalPoints | ? | Density estimate for each Critical point |
+| IndexFilament | NumFilaments | - | Index of the filament associated to each critical point |
+| IndexOtherFilamentExtreme | NumFilaments | - | Index of the critical point at the other extreme of the filament associated to each given critical point |
+| NumConnectedFilaments | NumCriticalPoints | - | Number of filaments connected to each critical point |
+| OffsetFilamentAndExtreme | NumCriticalPoints | - | Offset of the first filament or critical point associated to each critical point in the `IndexFilament` and `IndexOtherFilamentExtreme` arrays |
+| PersistencePairIndex | NumCriticalPoints | - | Index of the persistence pair of each critical point |
+
+### Filaments datasets
+
+| Dataset | Dim. | Units | Description |
+|---|---|---|---|
+| AssociatedFields | (NumFilaments, NumAssociatedFields) | - | Value of fields associated to each filament. The number and name of these fields are stored in the `NumAssociatedFields` and `AssociatedFieldsNames` attributes of the `Filament` dataset |
+| CoordinatesSamplingPoints | (NumSamplingPoints, 3) | \(kpc/h\) | Coordinates of the sampling points associated to each filament |
+| IndexExtremalCriticalPoints | (Nfilaments, 2) | - | Index of the critical points at the extremities of each filament |
+| NumSamplingPoints | NumFilaments | - | Number of sampling points associated to each filament |
+| OffsetSamplingPoints | NumFilaments | - | Offset of the first sampling point or critical points pair associated to each filament in the `CoordinatesSamplingPoints` and `IndexExtremalCriticalPoints` arrays |
