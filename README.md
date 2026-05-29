@@ -59,9 +59,9 @@ The available attributes in the `Header` group are listed here.
 
 | Attribute | Dimensions | Units | Description |
 |---|---|---|---|
-| BoundingBox | 6 | \(kpc/h\) | Coordinates of two corners of the bounding box (computed by DisPerSE) that encloses all tracer points. The six values correspond to \( x_{min}, y_{min}, z_{min}, x_{max}, y_{max}, z_{max} \) of the tracers. |
-| BoxSize | 1 | \(ckpc/h\) | Spatial extent of the periodic box (in comoving units). |
-| HubbleParam | 1 | \(100\,km/s/Mpc\) | Hubble constant (little \(h\) in standard units). |
+| BoundingBox | 6 | kpc/h | Coordinates of two corners of the bounding box (computed by DisPerSE) that encloses all tracer points. The six values correspond to \( x_{min}, y_{min}, z_{min}, x_{max}, y_{max}, z_{max} \) of the tracers. |
+| BoxSize | 1 | ckpc/h | Spatial extent of the periodic box (in comoving units). |
+| HubbleParam | 1 | 100 km/s/Mpc | Hubble constant (little \(h\) in standard units). |
 | NumCriticalPoints | 1 | - | Number of critical points identified by DisPerSE. |
 | NumDimensions | 1 | - | Number of dimensions of the space of tracer points. Always equal to 3 for THESAN. |
 | NumFilaments | 1 | - | Number of filaments identified by DisPerSE. |
@@ -82,7 +82,7 @@ The available datasets in the `CriticalPoints` and `Filaments` groups are listed
 |---|---|---|---|
 | AssociatedFields | (NumCriticalPoints, NumAssociatedFields) | - | Value of fields associated to each critical point. The number and name of these fields are stored in the `NumAssociatedFields` and `AssociatedFieldsNames` attributes of the `CriticalPoints` dataset |
 | BoundaryFlag | NumCriticalPoints | - | |
-| Coordinates | (NumCriticalPoints, 3) | \(kpc/h\) | Coordinates of each critical point |
+| Coordinates | (NumCriticalPoints, 3) | kpc/h | Coordinates of each critical point |
 | CriticalIndex | NumCriticalPoints | - | Critical index of each critical point |
 | DensityDTFE | NumCriticalPoints | ? | Density estimate for each Critical point |
 | IndexFilament | NumFilaments | - | Index of the filament associated to each critical point |
@@ -96,7 +96,7 @@ The available datasets in the `CriticalPoints` and `Filaments` groups are listed
 | Dataset | Dim. | Units | Description |
 |---|---|---|---|
 | AssociatedFields | (NumFilaments, NumAssociatedFields) | - | Value of fields associated to each filament. The number and name of these fields are stored in the `NumAssociatedFields` and `AssociatedFieldsNames` attributes of the `Filament` dataset |
-| CoordinatesSamplingPoints | (NumSamplingPoints, 3) | \(kpc/h\) | Coordinates of the sampling points associated to each filament |
+| CoordinatesSamplingPoints | (NumSamplingPoints, 3) | kpc/h | Coordinates of the sampling points associated to each filament |
 | IndexExtremalCriticalPoints | (Nfilaments, 2) | - | Index of the critical points at the extremities of each filament |
 | NumSamplingPoints | NumFilaments | - | Number of sampling points associated to each filament |
 | OffsetSamplingPoints | NumFilaments | - | Offset of the first sampling point or critical points pair associated to each filament in the `CoordinatesSamplingPoints` and `IndexExtremalCriticalPoints` arrays |
